@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Lab Arcade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <nav class="site-nav" aria-label="Primary">
+            <a class="logo" href="index.html">Tech Lab Arcade</a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+            <div class="nav-links" id="primary-nav">
+                <a href="index.html">Home</a>
+                <div class="nav-dropdown">
+                    <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">Games</button>
+                    <div class="dropdown-menu" role="menu">
+                        <a role="menuitem" href="games.html#cs">Computer Science</a>
+                        <a role="menuitem" href="games.html#it">Information Technology</a>
+                        <a role="menuitem" href="games.html#cyber">Cybersecurity</a>
+                    </div>
+                </div>
+                <a href="about.html">About</a>
+                <a href="admin.html">Admin</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle light and dark mode">
+                    <span class="theme-icon" aria-hidden="true">🌙</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main" class="main-content">
+        <section class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">Futuristic classroom hub</p>
+                <h1>Tech Lab Arcade</h1>
+                <p class="subtitle">Play. Learn. Level Up.</p>
+                <a class="button primary" href="games.html#cs">Explore Games</a>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="categories-title">
+            <div class="section-header">
+                <h2 id="categories-title">Choose your pathway</h2>
+                <p>Three subject lanes designed for quick skill-building.</p>
+            </div>
+            <div class="card-grid">
+                <article class="card">
+                    <h3>Computer Science Games</h3>
+                    <p>Logic, coding, and algorithm challenges to sharpen CS thinking.</p>
+                    <a class="button ghost" href="games.html#cs">View CS Games</a>
+                </article>
+                <article class="card accent">
+                    <h3>Information Technology Games</h3>
+                    <p>Hands-on practice for hardware, networking, and IT support.</p>
+                    <a class="button ghost" href="games.html#it">View IT Games</a>
+                </article>
+                <article class="card">
+                    <h3>Cybersecurity Games</h3>
+                    <p>Defensive scenarios to build awareness and safe habits.</p>
+                    <a class="button ghost" href="games.html#cyber">View Cyber Games</a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Tech Lab Arcade – Built for Classroom Learning</p>
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
