@@ -321,6 +321,12 @@ a {
     color: var(--muted-text);
 }
 
+.side-panel .note {
+    margin: 0;
+    color: var(--muted-text);
+    font-size: 0.95rem;
+}
+
 .wordle-layout {
     display: grid;
     grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
