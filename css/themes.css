@@ -1,0 +1,27 @@
+:root {
+    color-scheme: light;
+    --bg-color: #f8fbff;
+    --surface-color: #ffffff;
+    --text-color: #0b1224;
+    --muted-text: #5b6786;
+    --accent-color: #3a86ff;
+    --accent-strong: #4cc9ff;
+    --border-color: rgba(12, 20, 40, 0.12);
+    --glow-color: rgba(58, 134, 255, 0.25);
+    --shadow-color: rgba(10, 20, 40, 0.08);
+    --grid-color: rgba(58, 134, 255, 0.08);
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+    --bg-color: #0a101b;
+    --surface-color: #141c2b;
+    --text-color: #eef3ff;
+    --muted-text: #9aa9c6;
+    --accent-color: #4cc9ff;
+    --accent-strong: #3a86ff;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --glow-color: rgba(76, 201, 255, 0.2);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --grid-color: rgba(76, 201, 255, 0.08);
+}
