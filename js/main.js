@@ -50,6 +50,7 @@ const gameData = {
                 description: 'Convert binary numbers to decimal before time runs out.',
                 instructions: 'Translate the binary number and hit submit to score points.',
                 skills: ['Binary', 'Number systems'],
+                href: 'binary-blaster.html',
             },
             {
                 id: 'algorithm-shuffle',

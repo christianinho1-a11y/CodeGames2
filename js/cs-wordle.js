@@ -370,6 +370,17 @@ document.addEventListener('DOMContentLoaded', () => {
     chooseSecretWord();
     createBoard();
     createKeyboard();
-    setupInput();
     setupNewWordButton();
+    const storedName = localStorage.getItem('techLabPlayerName');
+    if (storedName) {
+        setupInput();
+    } else {
+        document.addEventListener(
+            'player:ready',
+            () => {
+                setupInput();
+            },
+            { once: true }
+        );
+    }
 });

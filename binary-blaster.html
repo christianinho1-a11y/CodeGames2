@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binary Blaster – Tech Lab Arcade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/binary-blaster.css" />
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <nav class="site-nav" aria-label="Primary">
+            <a class="logo" href="index.html">Tech Lab Arcade</a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+            <div class="nav-links" id="primary-nav">
+                <a href="index.html">Home</a>
+                <div class="nav-dropdown">
+                    <button class="dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">Games</button>
+                    <div class="dropdown-menu" role="menu">
+                        <a role="menuitem" href="games.html#cs">Computer Science</a>
+                        <a role="menuitem" href="games.html#it">Information Technology</a>
+                        <a role="menuitem" href="games.html#cyber">Cybersecurity</a>
+                    </div>
+                </div>
+                <a href="about.html">About</a>
+                <a href="admin.html">Admin</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle light and dark mode">
+                    <span class="theme-icon" aria-hidden="true">🌙</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main" class="main-content">
+        <section class="page-header binary-header">
+            <span class="chip">Computer Science</span>
+            <h1>Binary Blaster</h1>
+            <p>Convert fast, score big, and blast through binary challenges.</p>
+        </section>
+
+        <section class="binary-blaster-layout">
+            <div class="binary-blaster-shell">
+                <div class="binary-topbar">
+                    <div class="binary-score">Score: <span data-score>0</span></div>
+                    <div class="binary-timers">
+                        <div class="timer-block">
+                            <span>Total Time</span>
+                            <div class="timer-ring">
+                                <span data-total-timer>60</span>s
+                            </div>
+                        </div>
+                        <div class="timer-block">
+                            <span>Question</span>
+                            <div class="timer-bar">
+                                <div class="timer-fill" data-question-fill></div>
+                            </div>
+                            <span class="timer-count" data-question-timer>10</span>s
+                        </div>
+                    </div>
+                </div>
+
+                <div class="binary-display" aria-live="polite">
+                    <span data-binary>10110110</span>
+                </div>
+
+                <div class="binary-feedback" data-feedback>Ready?</div>
+
+                <div class="binary-input-panel">
+                    <div class="mode-toggle" role="tablist" aria-label="Input mode">
+                        <button class="mode-button is-active" type="button" data-mode-button="standard" role="tab" aria-selected="true">Decimal Input</button>
+                        <button class="mode-button" type="button" data-mode-button="fixed" role="tab" aria-selected="false">Fixed Slot Mode</button>
+                    </div>
+
+                    <div class="input-mode is-active" data-mode="standard">
+                        <label class="input-label" for="decimal-input">Enter decimal answer</label>
+                        <input id="decimal-input" class="decimal-input" type="text" inputmode="numeric" autocomplete="off" placeholder="Type a number and press Enter" />
+                        <p class="input-hint">Press Enter to submit your answer.</p>
+                    </div>
+
+                    <div class="input-mode" data-mode="fixed">
+                        <p class="input-label">Fixed Slot Input Strip</p>
+                        <div class="fixed-strip" data-fixed-strip aria-live="polite">
+                            <span class="fixed-digit" data-fixed-digit>0</span>
+                            <span class="fixed-digit" data-fixed-digit>0</span>
+                            <span class="fixed-digit" data-fixed-digit>0</span>
+                            <span class="fixed-digit" data-fixed-digit>0</span>
+                            <span class="fixed-digit" data-fixed-digit>0</span>
+                            <span class="fixed-digit" data-fixed-digit>0</span>
+                            <span class="fixed-digit" data-fixed-digit>0</span>
+                            <span class="fixed-digit" data-fixed-digit>0</span>
+                        </div>
+                        <p class="input-hint">Type digits to fill the strip, then press Enter to submit.</p>
+                        <p class="input-warning" data-fixed-warning></p>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="side-panel">
+                <h2>How to Play Binary Blaster</h2>
+                <ul>
+                    <li>Convert the 8-bit binary number into its decimal value.</li>
+                    <li>Type your answer and press Enter.</li>
+                    <li>You have 10 seconds per question and 60 seconds total.</li>
+                    <li>Green = correct. Red = incorrect.</li>
+                </ul>
+                <h3>Fixed Slot Mode</h3>
+                <ul>
+                    <li>It starts as 00000000.</li>
+                    <li>Each keypress replaces the next digit.</li>
+                    <li>You cannot delete or add digits.</li>
+                </ul>
+                <p class="note">Good luck, Blaster ⚡</p>
+                <a class="button ghost" href="games.html#cs">Back to CS Games</a>
+            </aside>
+        </section>
+    </main>
+
+    <div class="binary-end-screen" data-end-screen aria-hidden="true">
+        <div class="end-card">
+            <h2>Time’s up!</h2>
+            <p>Your final score:</p>
+            <div class="end-score" data-final-score>0</div>
+            <button class="button primary" type="button" data-play-again>Play Again</button>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>© 2026 Tech Lab Arcade — Computer Science Games</p>
+    </footer>
+
+    <div class="modal-overlay is-visible" data-player-modal>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="player-name-title">
+            <h2 id="player-name-title">Enter your name</h2>
+            <p>We use your name to place you on the leaderboard before you play.</p>
+            <form class="modal-form" data-player-form>
+                <label class="modal-field">
+                    Name
+                    <input type="text" name="playerName" autocomplete="name" maxlength="24" placeholder="e.g. Jordan Lee" required data-player-input />
+                </label>
+                <p class="modal-error" data-player-error aria-live="polite"></p>
+                <button class="button primary" type="submit">Start Playing</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/binary-blaster.js"></script>
+</body>
+</html>
