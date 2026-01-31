@@ -321,6 +321,116 @@ a {
     color: var(--muted-text);
 }
 
+.wordle-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 2rem;
+}
+
+.wordle-panel {
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+}
+
+.wordle-message {
+    min-height: 2rem;
+    padding: 0.6rem 1rem;
+    border-radius: 0.8rem;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    color: var(--muted-text);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.wordle-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.wordle-board {
+    display: grid;
+    gap: 0.6rem;
+}
+
+.wordle-row {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.6rem;
+}
+
+.wordle-tile {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.8rem;
+    display: grid;
+    place-items: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+    height: 3.2rem;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, background 0.2s ease, border 0.2s ease;
+}
+
+.wordle-tile.correct {
+    background: rgba(76, 201, 255, 0.3);
+    border-color: var(--accent-strong);
+    color: var(--text-color);
+}
+
+.wordle-tile.present {
+    background: rgba(58, 134, 255, 0.25);
+    border-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.wordle-tile.absent {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: var(--border-color);
+    color: var(--muted-text);
+}
+
+.wordle-keyboard {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.key-row {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.key {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 0.6rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    min-width: 2.2rem;
+}
+
+.key.correct {
+    background: rgba(76, 201, 255, 0.35);
+    border-color: var(--accent-strong);
+}
+
+.key.present {
+    background: rgba(58, 134, 255, 0.35);
+    border-color: var(--accent-color);
+}
+
+.key.absent {
+    background: rgba(0, 0, 0, 0.25);
+    border-color: var(--border-color);
+    color: var(--muted-text);
+}
+
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -426,6 +536,10 @@ a {
 
 @media (max-width: 900px) {
     .game-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .wordle-layout {
         grid-template-columns: 1fr;
     }
 }

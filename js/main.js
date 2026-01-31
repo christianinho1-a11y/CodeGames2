@@ -42,6 +42,7 @@ const gameData = {
                 description: 'Guess CS vocabulary words using a Wordle-style grid.',
                 instructions: 'Guess the word in six tries using the color hints.',
                 skills: ['Vocabulary', 'Problem solving'],
+                href: 'game-cs-wordle.html',
             },
             {
                 id: 'binary-blaster',
@@ -204,6 +205,7 @@ if (gamesGrid) {
                 <article class="game-tile">
                     <h3>${game.name}</h3>
                     <p>${game.description}</p>
+                    <a class="button ghost" href="${game.href ?? `game.html?game=${game.id}`}">Play</a>
                     <a class="button ghost" href="game.html?game=${game.id}">Play</a>
                 </article>
             `
