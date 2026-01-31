@@ -47,10 +47,14 @@
                 <div class="game-area">
                     <p>Game content loads here. Drop in HTML/JS for this activity.</p>
                 </div>
-                <button class="button primary game-play" type="button">Play</button>
-                <div class="leaderboard">
+                <div class="game-actions">
+                    <button class="button primary game-play" type="button" data-game-play>Play</button>
+                    <button class="button ghost leaderboard-toggle" type="button" data-leaderboard-toggle aria-expanded="false" aria-controls="leaderboard-panel">View Leaderboard</button>
+                </div>
+                <div class="leaderboard is-hidden" id="leaderboard-panel" data-leaderboard-panel>
                     <h2>Leaderboard</h2>
-                    <ol>
+                    <ol data-leaderboard-list>
+                        <li data-player-entry hidden></li>
                         <li>Student Alpha — 1200 pts</li>
                         <li>Student Beta — 980 pts</li>
                         <li>Student Gamma — 860 pts</li>
@@ -71,7 +75,23 @@
         <p>© 2026 Tech Lab Arcade – Built for Classroom Learning</p>
     </footer>
 
+    <div class="modal-overlay is-visible" data-player-modal>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="player-name-title">
+            <h2 id="player-name-title">Enter your name</h2>
+            <p>We use your name to place you on the leaderboard before you play.</p>
+            <form class="modal-form" data-player-form>
+                <label class="modal-field">
+                    Name
+                    <input type="text" name="playerName" autocomplete="name" maxlength="24" placeholder="e.g. Jordan Lee" required data-player-input />
+                </label>
+                <p class="modal-error" data-player-error aria-live="polite"></p>
+                <button class="button primary" type="submit">Start Playing</button>
+            </form>
+        </div>
+    </div>
+
     <script src="js/theme.js"></script>
+    <script src="js/player.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
