@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Binary Blaster – Tech Lab Arcade</title>
+
   <style>
     :root {
       --bg: #050816;
@@ -18,22 +19,18 @@
       --card-bg-light: #ffffff;
       --border-soft: rgba(255, 255, 255, 0.06);
     }
-
     [data-theme="light"] {
       --bg: var(--bg-light);
       --fg: #0a1020;
       --card-bg: var(--card-bg-light);
       --border-soft: rgba(0, 0, 0, 0.07);
     }
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter",
-        "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, "Inter", sans-serif;
     }
-
     body {
       min-height: 100vh;
       background: radial-gradient(circle at top, #162447 0, var(--bg) 45%);
@@ -41,207 +38,83 @@
       display: flex;
       flex-direction: column;
     }
-
     header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
       padding: 0.75rem 1.5rem;
       border-bottom: 1px solid var(--border-soft);
-      backdrop-filter: blur(10px);
-      background: linear-gradient(
-        to right,
-        rgba(5, 8, 22, 0.9),
-        rgba(5, 8, 22, 0.7)
-      );
     }
-
-    [data-theme="light"] header {
-      background: rgba(244, 246, 251, 0.9);
-    }
-
     .logo {
       font-weight: 700;
-      letter-spacing: 0.08em;
-      font-size: 0.9rem;
-      text-transform: uppercase;
       color: var(--accent);
+      letter-spacing: 0.1em;
     }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .small-link {
-      font-size: 0.85rem;
-      color: var(--fg);
-      text-decoration: none;
-      opacity: 0.8;
-    }
-
-    .small-link:hover {
-      opacity: 1;
-      text-decoration: underline;
-    }
-
     .theme-toggle {
-      border: 1px solid var(--border-soft);
       background: transparent;
-      color: var(--fg);
-      border-radius: 999px;
+      border: 1px solid var(--border-soft);
       padding: 0.25rem 0.6rem;
-      font-size: 0.85rem;
+      border-radius: 999px;
+      color: var(--fg);
       cursor: pointer;
     }
-
     main {
       flex: 1;
       display: flex;
-      align-items: center;
       justify-content: center;
       padding: 1.5rem;
     }
-
     .game-shell {
       width: 100%;
       max-width: 900px;
       background: var(--card-bg);
+      padding: 1.75rem;
       border-radius: 18px;
       border: 1px solid var(--border-soft);
-      padding: 1.75rem 1.5rem;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
       display: grid;
-      grid-template-columns: 3fr 2fr;
       gap: 1.5rem;
+      grid-template-columns: 3fr 2fr;
     }
-
-    [data-theme="light"] .game-shell {
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
-    }
-
-    @media (max-width: 780px) {
-      .game-shell {
-        grid-template-columns: 1fr;
-      }
-    }
-
     .game-main {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
     }
-
     .game-title {
       font-size: 1.4rem;
       font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .pill {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      padding: 0.18rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid var(--accent-soft);
-      color: var(--accent);
-      background: rgba(6, 35, 84, 0.3);
     }
 
     .subtitle {
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-
-    .status-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      font-size: 0.9rem;
-    }
-
-    .badges {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .badge {
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-soft);
-      font-size: 0.8rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .badge strong {
+      opacity: 0.7;
       font-size: 0.9rem;
     }
 
     .binary-display {
-      margin-top: 0.5rem;
-      padding: 1.1rem 1rem;
+      padding: 1.1rem;
       border-radius: 14px;
-      border: 1px solid var(--border-soft);
-      background: radial-gradient(circle at top, rgba(58,134,255,0.14), transparent 55%);
       text-align: center;
+      border: 1px solid var(--border-soft);
     }
-
     .binary-text {
-      font-family: "SF Mono", ui-monospace, Menlo, Monaco, "Consolas", "Liberation Mono", "Courier New", monospace;
+      font-family: monospace;
       font-size: 2.4rem;
-      letter-spacing: 0.16em;
-      margin-bottom: 0.25rem;
+      letter-spacing: 0.22em;
     }
-
-    .binary-sub {
-      font-size: 0.75rem;
-      opacity: 0.75;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .binary-display.correct {
-      box-shadow: 0 0 18px rgba(76, 175, 80, 0.5);
-      border-color: rgba(76, 175, 80, 0.7);
-    }
-
-    .binary-display.incorrect {
-      box-shadow: 0 0 18px rgba(255, 75, 92, 0.5);
-      border-color: rgba(255, 75, 92, 0.7);
-    }
-
     .timers {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
+      margin-top: 0.7rem;
     }
-
     .timer-row {
       display: flex;
       justify-content: space-between;
-      font-size: 0.8rem;
-      opacity: 0.85;
+      margin-bottom: 0.25rem;
     }
-
     .bar-bg {
       width: 100%;
       height: 6px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
-      overflow: hidden;
+      background: rgba(255,255,255,0.08);
     }
-
     .bar-fill {
       height: 100%;
       width: 100%;
@@ -249,714 +122,241 @@
       background: linear-gradient(90deg, var(--accent), #4cc9ff);
       transition: width 0.2s linear;
     }
-
-    .bar-fill.danger {
-      background: linear-gradient(90deg, #ff4b5c, #ff9800);
-    }
-
     .input-panel {
-      margin-top: 1rem;
-      padding: 0.9rem 0.9rem 1rem;
+      padding: 1rem;
       border-radius: 14px;
       border: 1px solid var(--border-soft);
-      background: rgba(3, 8, 26, 0.5);
     }
-
-    [data-theme="light"] .input-panel {
-      background: rgba(255, 255, 255, 0.8);
-    }
-
-    .mode-toggle {
-      display: flex;
-      gap: 0.4rem;
-      margin-bottom: 0.65rem;
-      font-size: 0.85rem;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .mode-buttons {
-      display: flex;
-      gap: 0.4rem;
-    }
-
-    .chip-button {
-      padding: 0.2rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      background: transparent;
-      color: inherit;
-      font-size: 0.78rem;
-      cursor: pointer;
-      opacity: 0.7;
-    }
-
-    .chip-button.active {
-      border-color: var(--accent);
-      background: rgba(58, 134, 255, 0.12);
-      opacity: 1;
-    }
-
-    .input-mode {
-      display: none;
-      margin-top: 0.3rem;
-    }
-
-    .input-mode.active {
-      display: block;
-    }
-
     .numeric-input {
       width: 100%;
-      padding: 0.55rem 0.65rem;
+      padding: 0.6rem;
       border-radius: 10px;
       border: 1px solid var(--border-soft);
-      background: rgba(0, 0, 0, 0.12);
-      color: var(--fg);
-      font-size: 0.95rem;
-      outline: none;
-    }
-
-    [data-theme="light"] .numeric-input {
-      background: rgba(255, 255, 255, 0.9);
-      color: var(--fg-dark);
-    }
-
-    .numeric-input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(58, 134, 255, 0.4);
-    }
-
-    .fixed-strip {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.25rem;
-      margin-top: 0.25rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .fixed-digit {
-      flex: 1;
-      max-width: 2.1rem;
-      aspect-ratio: 3/4;
-      border-radius: 10px;
-      border: 1px solid var(--border-soft);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 1rem;
-      background: rgba(0, 0, 0, 0.18);
     }
-
-    [data-theme="light"] .fixed-digit {
-      background: rgba(255, 255, 255, 0.9);
-    }
-
-    .fixed-hint {
-      font-size: 0.75rem;
-      opacity: 0.7;
-    }
-
     .message {
-      min-height: 1.2rem;
-      font-size: 0.85rem;
+      min-height: 1rem;
+      font-size: 0.9rem;
       margin-top: 0.45rem;
-      opacity: 0.85;
     }
-
-    .message.success {
-      color: var(--success);
-    }
-
-    .message.error {
-      color: var(--error);
-    }
-
-    .game-controls {
-      margin-top: 0.75rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      opacity: 0.8;
-    }
+    .message.success { color: var(--success); }
+    .message.error { color: var(--error); }
 
     .primary-button {
-      padding: 0.5rem 0.9rem;
-      border-radius: 999px;
+      padding: 0.5rem 1rem;
+      background: var(--accent);
       border: none;
-      background: linear-gradient(135deg, var(--accent), #4cc9ff);
+      border-radius: 999px;
       color: white;
       cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .primary-button:disabled {
-      opacity: 0.6;
-      cursor: default;
+      font-size: 1rem;
+      margin-top: 0.75rem;
     }
 
     .game-aside {
+      padding: 1rem;
       border-radius: 14px;
       border: 1px solid var(--border-soft);
-      padding: 1rem;
-      background: radial-gradient(
-        circle at top,
-        rgba(58, 134, 255, 0.12),
-        transparent 55%
-      );
-      font-size: 0.86rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-
-    .aside-section h3 {
-      font-size: 0.95rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .bullet-list {
-      padding-left: 1.1rem;
-      margin-top: 0.3rem;
-    }
-
-    .bullet-list li {
-      margin-bottom: 0.15rem;
+      font-size: 0.9rem;
     }
 
     .final-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0,0,0,0.7);
       display: none;
       align-items: center;
       justify-content: center;
-      z-index: 50;
     }
-
     .final-card {
       background: var(--card-bg);
-      border-radius: 18px;
+      padding: 1.5rem;
+      border-radius: 14px;
+      text-align: center;
+      width: 300px;
       border: 1px solid var(--border-soft);
-      padding: 1.5rem 1.6rem;
-      max-width: 360px;
-      width: 90%;
-      text-align: center;
     }
 
-    .final-card h2 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .final-score {
-      font-size: 1.1rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .final-note {
-      font-size: 0.85rem;
-      opacity: 0.8;
-      margin-bottom: 0.9rem;
-    }
-
-    footer {
-      font-size: 0.8rem;
-      padding: 0.6rem 1.5rem;
-      text-align: center;
-      opacity: 0.7;
-    }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="logo">Tech Lab Arcade</div>
-    <div class="header-right">
-      <a href="index.html" class="small-link">Back to Home</a>
-      <button class="theme-toggle" id="themeToggle">🌙</button>
-    </div>
-  </header>
 
-  <main>
-    <div class="game-shell">
-      <section class="game-main">
-        <div>
-          <div class="game-title">
-            Binary Blaster
-            <span class="pill">Computer Science</span>
-          </div>
-          <p class="subtitle">
-            Convert each 8-bit binary number into decimal as quickly as you can.
-          </p>
-        </div>
+<header>
+  <div class="logo">Tech Lab Arcade</div>
+  <button class="theme-toggle" id="themeToggle">🌙</button>
+</header>
 
-        <div class="status-row">
-          <div class="badges">
-            <span class="badge">
-              ⏱ <strong id="totalTimeLabel">60</strong>s total
-            </span>
-            <span class="badge">
-              🔄 <strong id="questionTimeLabel">10</strong>s per question
-            </span>
-          </div>
-          <div class="badge">
-            ⭐ Score: <strong id="scoreDisplay">0</strong>
-          </div>
-        </div>
+<main>
+  <div class="game-shell">
+    
+    <!-- MAIN PANEL -->
+    <section class="game-main">
 
-        <div class="binary-display" id="binaryDisplay">
-          <div class="binary-text" id="binaryText">--------</div>
-          <div class="binary-sub">CURRENT BINARY</div>
-        </div>
-
-        <div class="timers">
-          <div>
-            <div class="timer-row">
-              <span>Game Time</span>
-              <span id="totalTimerText">60s</span>
-            </div>
-            <div class="bar-bg">
-              <div class="bar-fill" id="totalTimerBar"></div>
-            </div>
-          </div>
-
-          <div>
-            <div class="timer-row">
-              <span>Question Time</span>
-              <span id="questionTimerText">10s</span>
-            </div>
-            <div class="bar-bg">
-              <div class="bar-fill" id="questionTimerBar"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="input-panel">
-          <div class="mode-toggle">
-            <span>Answer Input Mode</span>
-            <div class="mode-buttons">
-              <button class="chip-button active" data-mode="decimal" id="modeDecimal">
-                Decimal Input
-              </button>
-              <button class="chip-button" data-mode="fixed" id="modeFixed">
-                Fixed Slot (00000000)
-              </button>
-            </div>
-          </div>
-
-          <!-- Decimal mode -->
-          <div class="input-mode active" id="decimalMode">
-            <input
-              type="number"
-              id="decimalInput"
-              class="numeric-input"
-              placeholder="Type the decimal value, then press Enter"
-            />
-          </div>
-
-          <!-- Fixed slot mode -->
-          <div class="input-mode" id="fixedMode">
-            <div class="fixed-strip" id="fixedStrip">
-              <!-- digits will be filled by JS -->
-            </div>
-            <div class="fixed-hint">
-              Starts as <strong>00000000</strong>. Each keypress overwrites the next digit.
-              No delete. Press Enter to submit.
-            </div>
-          </div>
-
-          <div class="message" id="messageArea"></div>
-
-          <div class="game-controls">
-            <button class="primary-button" id="startButton">Start Game</button>
-            <span>Press Enter to submit each answer.</span>
-          </div>
-        </div>
-      </section>
-
-      <aside class="game-aside">
-        <div class="aside-section">
-          <h3>How to Play</h3>
-          <ul class="bullet-list">
-            <li>An 8-bit binary number appears at the top.</li>
-            <li>Convert it to decimal as fast as you can.</li>
-            <li>You have 10 seconds per question and 60 seconds total.</li>
-            <li>Correct answers earn 1 point each.</li>
-          </ul>
-        </div>
-        <div class="aside-section">
-          <h3>Modes</h3>
-          <ul class="bullet-list">
-            <li><strong>Decimal Input:</strong> free typing, you can edit before Enter.</li>
-            <li>
-              <strong>Fixed Slot:</strong> 8-digit strip starts at 00000000. Each keypress
-              overwrites the next digit. No delete or extra digits allowed.
-            </li>
-          </ul>
-        </div>
-        <div class="aside-section">
-          <h3>Teacher Tip</h3>
-          <p>
-            Use this game as a warm-up when teaching binary. After a round, pick a few
-            binary values and ask students to explain their mental strategy.
-          </p>
-        </div>
-      </aside>
-    </div>
-  </main>
-
-  <div class="final-overlay" id="finalOverlay">
-    <div class="final-card">
-      <h2>Time's Up!</h2>
-      <div class="final-score">
-        Final Score: <strong id="finalScoreText">0</strong>
+      <div>
+        <h1 class="game-title">Binary Blaster</h1>
+        <p class="subtitle">Convert the 8-bit binary number into decimal.</p>
       </div>
-      <div class="final-note">
-        Each point is one correct binary-to-decimal conversion. Can you beat this next time?
+
+      <div class="binary-display">
+        <div class="binary-text" id="binaryText">--------</div>
       </div>
-      <button class="primary-button" id="playAgainButton">Play Again</button>
-    </div>
+
+      <div class="timers">
+        <div class="timer-row">
+          <span>Total Time</span> <span id="totalTimeText">60s</span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" id="totalBar"></div></div>
+
+        <div class="timer-row" style="margin-top:10px;">
+          <span>Question Time</span> <span id="questionTimeText">10s</span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" id="questionBar"></div></div>
+      </div>
+
+      <div class="input-panel">
+        <input id="decimalInput" class="numeric-input" placeholder="Enter decimal, press Enter" />
+        <div class="message" id="msg"></div>
+        <button class="primary-button" id="startBtn">Start Game</button>
+      </div>
+
+    </section>
+
+    <!-- RIGHT SIDE -->
+    <aside class="game-aside">
+      <h3>How to Play</h3>
+      <p>• Convert the 8-bit binary number into decimal.</p>
+      <p>• Press Enter to submit.</p>
+      <p>• 10 seconds per question.</p>
+      <p>• 60 seconds total.</p>
+      <p>• 1 point for each correct answer.</p>
+    </aside>
+
   </div>
+</main>
 
-  <footer>
-    © 2026 Tech Lab Arcade — Binary Blaster • Built for classroom learning
-  </footer>
+<div class="final-overlay" id="finalOverlay">
+  <div class="final-card">
+    <h2>Time's Up!</h2>
+    <p>Your score:</p>
+    <h1 id="finalScore">0</h1>
+    <button class="primary-button" id="playAgainBtn">Play Again</button>
+  </div>
+</div>
 
-  <script>
-    // --- THEME TOGGLE ---
-    (function () {
-      const root = document.documentElement;
-      const btn = document.getElementById("themeToggle");
-      function setTheme(theme) {
-        root.setAttribute("data-theme", theme);
-        localStorage.setItem("tla-theme", theme);
-        btn.textContent = theme === "light" ? "🌙" : "☀️";
+<script>
+  // Theme Toggle
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn.addEventListener("click", () => {
+    let t = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", t === "dark" ? "light" : "dark");
+  });
+
+  // Game Elements
+  const binaryText = document.getElementById("binaryText");
+  const decimalInput = document.getElementById("decimalInput");
+  const msg = document.getElementById("msg");
+
+  const totalBar = document.getElementById("totalBar");
+  const questionBar = document.getElementById("questionBar");
+
+  const totalTimeText = document.getElementById("totalTimeText");
+  const questionTimeText = document.getElementById("questionTimeText");
+
+  const startBtn = document.getElementById("startBtn");
+  const finalOverlay = document.getElementById("finalOverlay");
+  const finalScore = document.getElementById("finalScore");
+  const playAgainBtn = document.getElementById("playAgainBtn");
+
+  // Game Variables
+  let totalTime = 60;
+  let questionTime = 10;
+  let timer;
+  let currentValue;
+  let score = 0;
+  let running = false;
+
+  function randomBinary() {
+    let val = Math.floor(Math.random() * 256);
+    currentValue = val;
+    binaryText.textContent = val.toString(2).padStart(8, "0");
+    questionTime = 10;
+    questionTimeText.textContent = questionTime + "s";
+  }
+
+  function startGame() {
+    running = true;
+    score = 0;
+    totalTime = 60;
+    questionTime = 10;
+
+    finalOverlay.style.display = "none";
+    decimalInput.value = "";
+    msg.textContent = "";
+
+    randomBinary();
+
+    timer = setInterval(() => {
+      if (!running) return;
+
+      totalTime--;
+      questionTime--;
+
+      if (totalTime <= 0) totalTime = 0;
+      if (questionTime <= 0) questionTime = 0;
+
+      totalTimeText.textContent = totalTime + "s";
+      questionTimeText.textContent = questionTime + "s";
+
+      totalBar.style.width = (totalTime / 60) * 100 + "%";
+      questionBar.style.width = (questionTime / 10) * 100 + "%";
+
+      if (questionTime <= 0) {
+        msg.textContent = "Time up! Correct answer: " + currentValue;
+        randomBinary();
       }
-      const stored = localStorage.getItem("tla-theme");
-      if (stored === "dark" || stored === "light") {
-        setTheme(stored);
-      } else {
-        setTheme("dark");
-      }
-      btn.addEventListener("click", () => {
-        const current = root.getAttribute("data-theme");
-        setTheme(current === "dark" ? "light" : "dark");
-      });
-    })();
+      if (totalTime <= 0) endGame();
+    }, 1000);
+  }
 
-    // --- BINARY BLASTER GAME LOGIC ---
-    (function () {
-      const TOTAL_TIME = 60; // seconds
-      const QUESTION_TIME = 10; // seconds
-      const FIXED_DIGITS = 8;
+  function endGame() {
+    running = false;
+    clearInterval(timer);
+    finalScore.textContent = score;
+    finalOverlay.style.display = "flex";
+  }
 
-      let gameRunning = false;
-      let totalTimeLeft = TOTAL_TIME;
-      let questionTimeLeft = QUESTION_TIME;
-      let score = 0;
-      let currentValue = null;
-      let timerInterval = null;
-      let mode = "decimal"; // "decimal" | "fixed"
+  function submit() {
+    if (!running) return;
+    let guess = Number(decimalInput.value);
+    if (isNaN(guess)) {
+      msg.textContent = "Enter a number!";
+      return;
+    }
 
-      // For fixed mode
-      let fixedDigits = [];
-      let fixedIndex = 0;
+    if (guess === currentValue) {
+      msg.textContent = "Correct!";
+      msg.className = "message success";
+      score++;
+    } else {
+      msg.textContent = "Wrong — correct was " + currentValue;
+      msg.className = "message error";
+    }
 
-      // DOM references
-      const binaryTextEl = document.getElementById("binaryText");
-      const binaryDisplayEl = document.getElementById("binaryDisplay");
-      const scoreDisplay = document.getElementById("scoreDisplay");
-      const totalTimeLabel = document.getElementById("totalTimeLabel");
-      const questionTimeLabel = document.getElementById("questionTimeLabel");
-      const totalTimerText = document.getElementById("totalTimerText");
-      const questionTimerText = document.getElementById("questionTimerText");
-      const totalTimerBar = document.getElementById("totalTimerBar");
-      const questionTimerBar = document.getElementById("questionTimerBar");
-      const decimalInput = document.getElementById("decimalInput");
-      const fixedModeEl = document.getElementById("fixedMode");
-      const decimalModeEl = document.getElementById("decimalMode");
-      const modeDecimalBtn = document.getElementById("modeDecimal");
-      const modeFixedBtn = document.getElementById("modeFixed");
-      const fixedStrip = document.getElementById("fixedStrip");
-      const messageArea = document.getElementById("messageArea");
-      const startButton = document.getElementById("startButton");
-      const finalOverlay = document.getElementById("finalOverlay");
-      const finalScoreText = document.getElementById("finalScoreText");
-      const playAgainButton = document.getElementById("playAgainButton");
+    decimalInput.value = "";
+    randomBinary();
+  }
 
-      // Initialize fixed strip
-      function initFixedStrip() {
-        fixedStrip.innerHTML = "";
-        fixedDigits = [];
-        fixedIndex = 0;
-        for (let i = 0; i < FIXED_DIGITS; i++) {
-          const span = document.createElement("span");
-          span.className = "fixed-digit";
-          span.textContent = "0";
-          fixedStrip.appendChild(span);
-          fixedDigits.push("0");
-        }
-      }
+  decimalInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") submit();
+  });
 
-      initFixedStrip();
+  startBtn.addEventListener("click", startGame);
+  playAgainBtn.addEventListener("click", startGame);
 
-      // Helpers
-      function binaryOf(value) {
-        return value.toString(2).padStart(8, "0");
-      }
+</script>
 
-      function setMessage(text, type) {
-        messageArea.textContent = text || "";
-        messageArea.classList.remove("success", "error");
-        if (type) {
-          messageArea.classList.add(type);
-        }
-      }
-
-      function updateDisplays() {
-        totalTimeLabel.textContent = totalTimeLeft;
-        questionTimeLabel.textContent = questionTimeLeft;
-        totalTimerText.textContent = totalTimeLeft + "s";
-        questionTimerText.textContent = questionTimeLeft + "s";
-
-        const totalPct = (totalTimeLeft / TOTAL_TIME) * 100;
-        const questionPct = (questionTimeLeft / QUESTION_TIME) * 100;
-
-        totalTimerBar.style.width = Math.max(0, totalPct) + "%";
-        questionTimerBar.style.width = Math.max(0, questionPct) + "%";
-
-        if (questionPct <= 30) {
-          questionTimerBar.classList.add("danger");
-        } else {
-          questionTimerBar.classList.remove("danger");
-        }
-      }
-
-      function resetBinaryHighlight() {
-        binaryDisplayEl.classList.remove("correct", "incorrect");
-      }
-
-      function flashResult(correct) {
-        resetBinaryHighlight();
-        binaryDisplayEl.classList.add(correct ? "correct" : "incorrect");
-        setTimeout(resetBinaryHighlight, 400);
-      }
-
-      function generateQuestion() {
-        currentValue = Math.floor(Math.random() * 256); // 0-255
-        binaryTextEl.textContent = binaryOf(currentValue);
-        questionTimeLeft = QUESTION_TIME;
-        updateDisplays();
-        setMessage("");
-        // Reset inputs
-        decimalInput.value = "";
-        initFixedStrip();
-      }
-
-      function startGame() {
-        if (gameRunning) return;
-        gameRunning = true;
-        score = 0;
-        totalTimeLeft = TOTAL_TIME;
-        questionTimeLeft = QUESTION_TIME;
-        scoreDisplay.textContent = score;
-        startButton.disabled = true;
-        setMessage("Game started! Convert the binary to decimal and press Enter.");
-
-        generateQuestion();
-
-        if (timerInterval) clearInterval(timerInterval);
-        timerInterval = setInterval(() => {
-          if (!gameRunning) return;
-
-          totalTimeLeft -= 1;
-          questionTimeLeft -= 1;
-
-          if (totalTimeLeft <= 0) {
-            totalTimeLeft = 0;
-          }
-          if (questionTimeLeft <= 0) {
-            questionTimeLeft = 0;
-          }
-
-          updateDisplays();
-
-          if (questionTimeLeft <= 0) {
-            // Time up for this question
-            handleAnswerTimeout();
-          }
-
-          if (totalTimeLeft <= 0) {
-            endGame();
-          }
-        }, 1000);
-      }
-
-      function endGame() {
-        if (!gameRunning) return;
-        gameRunning = false;
-        if (timerInterval) clearInterval(timerInterval);
-        timerInterval = null;
-        setMessage("Game over.", "");
-        startButton.disabled = false;
-        finalScoreText.textContent = score;
-        finalOverlay.style.display = "flex";
-      }
-
-      function getCurrentAnswer() {
-        if (mode === "decimal") {
-          const raw = decimalInput.value.trim();
-          if (!raw) return null;
-          const n = Number(raw);
-          if (!Number.isFinite(n)) return null;
-          return Math.floor(n);
-        } else {
-          // fixed mode
-          const joined = fixedDigits.join("");
-          const n = Number(joined);
-          if (!Number.isFinite(n)) return null;
-          return Math.floor(n);
-        }
-      }
-
-      function submitAnswer() {
-        if (!gameRunning) return;
-        const answer = getCurrentAnswer();
-        if (answer === null) {
-          setMessage("Please enter a number before pressing Enter.", "error");
-          return;
-        }
-
-        const correct = currentValue;
-        const isCorrect = answer === correct;
-
-        if (isCorrect) {
-          score += 1;
-          scoreDisplay.textContent = score;
-          setMessage("Correct! 🎉 " + correct + " is the right decimal value.", "success");
-        } else {
-          setMessage(
-            "Incorrect. The correct decimal value was " + correct + ".",
-            "error"
-          );
-        }
-        flashResult(isCorrect);
-
-        // Next question
-        generateQuestion();
-      }
-
-      function handleAnswerTimeout() {
-        if (!gameRunning) return;
-        const correct = currentValue;
-        setMessage(
-          "Time's up! The correct decimal value was " + correct + ".",
-          "error"
-        );
-        flashResult(false);
-        generateQuestion();
-      }
-
-      // Mode switching
-      function setMode(newMode) {
-        if (newMode === mode) return;
-        mode = newMode;
-
-        if (mode === "decimal") {
-          decimalModeEl.classList.add("active");
-          fixedModeEl.classList.remove("active");
-          modeDecimalBtn.classList.add("active");
-          modeFixedBtn.classList.remove("active");
-          decimalInput.focus();
-        } else {
-          decimalModeEl.classList.remove("active");
-          fixedModeEl.classList.add("active");
-          modeDecimalBtn.classList.remove("active");
-          modeFixedBtn.classList.add("active");
-          initFixedStrip();
-        }
-      }
-
-      modeDecimalBtn.addEventListener("click", () => setMode("decimal"));
-      modeFixedBtn.addEventListener("click", () => setMode("fixed"));
-
-      // Fixed mode key handling
-      document.addEventListener("keydown", (e) => {
-        if (!gameRunning) return;
-
-        if (mode === "decimal") {
-          // Let the input handle it, but Enter submits
-          if (e.key === "Enter") {
-            e.preventDefault();
-            submitAnswer();
-          }
-          return;
-        }
-
-        // Mode: fixed
-        // Prevent backspace/delete from changing digits
-        if (e.key === "Backspace" || e.key === "Delete") {
-          e.preventDefault();
-          return;
-        }
-
-        if (e.key === "Enter") {
-          e.preventDefault();
-          submitAnswer();
-          return;
-        }
-
-        // Only numeric digits 0-9
-        if (/^[0-9]$/.test(e.key)) {
-          e.preventDefault();
-          if (fixedIndex >= FIXED_DIGITS) {
-            // All slots filled; ignore
-            return;
-          }
-          fixedDigits[fixedIndex] = e.key;
-          const span = fixedStrip.children[fixedIndex];
-          if (span) span.textContent = e.key;
-          fixedIndex += 1;
-          return;
-        }
-      });
-
-      // Enter in decimal input
-      decimalInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          submitAnswer();
-        }
-      });
-
-      // Start button
-      startButton.addEventListener("click", () => {
-        startGame();
-        if (mode === "decimal") {
-          decimalInput.focus();
-        }
-      });
-
-      // Play again
-      playAgainButton.addEventListener("click", () => {
-        finalOverlay.style.display = "none";
-        startGame();
-        if (mode === "decimal") {
-          decimalInput.focus();
-        }
-      });
-
-      // Initial UI state
-      updateDisplays();
-      binaryTextEl.textContent = "--------";
-      setMessage("Press Start Game to begin.");
-    })();
-  </script>
 </body>
 </html>
+
 
