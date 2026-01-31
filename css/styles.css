@@ -307,12 +307,32 @@ a {
     border-radius: 1.2rem;
     border: 1px dashed var(--border-color);
     padding: 2rem;
+    display: grid;
+    gap: 1.5rem;
 }
 
 .game-area {
     min-height: 320px;
     display: grid;
     place-items: center;
+    color: var(--muted-text);
+}
+
+.game-play {
+    justify-self: start;
+}
+
+.leaderboard {
+    background: var(--surface-color);
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    padding: 1.2rem;
+    box-shadow: 0 12px 30px var(--shadow-color);
+}
+
+.leaderboard ol {
+    margin: 0;
+    padding-left: 1.2rem;
     color: var(--muted-text);
 }
 
