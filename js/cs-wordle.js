@@ -99,6 +99,23 @@ const CS_WORDS = [
     'ARRAY2',
     'MUXER',
     'LINKS',
+    'LOOPS',
+    'INPUT',
+    'LOGIC',
+    'BYTES',
+    'CLASS',
+    'WHILE',
+    'PRINT',
+    'FLOAT',
+    'CACHE',
+    'ROUTE',
+    'DEBUG',
+    'MERGE',
+    'SHIFT',
+    'FRAME',
+    'TOKEN',
+    'NODES',
+    'INDEX',
 ];
 
 const KEY_ROWS = [
@@ -260,10 +277,16 @@ const revealResult = (result) => {
 const submitGuess = () => {
     if (currentGuess.length !== WORD_LENGTH) {
         showMessage('Enter a 5-letter guess.');
+        showMessage('Not enough letters');
         return;
     }
 
     const guessUpper = currentGuess.toUpperCase();
+    if (!CS_WORDS.includes(guessUpper)) {
+        showMessage('Not in CS word list');
+        return;
+    }
+
     const result = scoreGuess(guessUpper, secretWord);
     revealResult(result);
 };

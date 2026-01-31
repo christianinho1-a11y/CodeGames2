@@ -393,12 +393,16 @@ a {
 .wordle-tile.correct {
     background: rgba(34, 197, 94, 0.25);
     border-color: #22c55e;
+    background: rgba(76, 201, 255, 0.3);
+    border-color: var(--accent-strong);
     color: var(--text-color);
 }
 
 .wordle-tile.present {
     background: rgba(245, 158, 11, 0.25);
     border-color: #f59e0b;
+    background: rgba(58, 134, 255, 0.25);
+    border-color: var(--accent-color);
     color: var(--text-color);
 }
 
@@ -439,6 +443,13 @@ a {
 .key.present {
     background: rgba(245, 158, 11, 0.35);
     border-color: #f59e0b;
+    background: rgba(76, 201, 255, 0.35);
+    border-color: var(--accent-strong);
+}
+
+.key.present {
+    background: rgba(58, 134, 255, 0.35);
+    border-color: var(--accent-color);
 }
 
 .key.absent {
