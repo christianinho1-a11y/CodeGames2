@@ -206,6 +206,7 @@ if (gamesGrid) {
                     <h3>${game.name}</h3>
                     <p>${game.description}</p>
                     <a class="button ghost" href="${game.href ?? `game.html?game=${game.id}`}">Play</a>
+                    <a class="button ghost" href="game.html?game=${game.id}">Play</a>
                 </article>
             `
             )
