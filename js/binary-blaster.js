@@ -302,3 +302,39 @@ if (isBinaryBlasterPage) {
         }
     });
 }
+modeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        setMode(button.dataset.modeButton);
+    });
+});
+
+if (decimalInput) {
+    decimalInput.addEventListener('input', () => {
+        decimalInput.value = decimalInput.value.replace(/[^\d]/g, '');
+    });
+    decimalInput.addEventListener('keydown', handleDecimalInput);
+}
+
+document.addEventListener('keydown', handleFixedInput);
+
+if (playAgainButton) {
+    playAgainButton.addEventListener('click', () => {
+        startGame();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    setMode('standard');
+    const storedName = localStorage.getItem(PLAYER_NAME_KEY);
+    if (storedName) {
+        startGame();
+    } else {
+        document.addEventListener(
+            'player:ready',
+            () => {
+                startGame();
+            },
+            { once: true }
+        );
+    }
+});

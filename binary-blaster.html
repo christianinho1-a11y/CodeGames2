@@ -154,3 +154,362 @@
     <script src="js/binary-blaster.js"></script>
 </body>
 </html>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Binary Blaster – Tech Lab Arcade</title>
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-light: #f4f6fb;
+      --fg: #e5ecff;
+      --fg-dark: #101320;
+      --accent: #3a86ff;
+      --accent-soft: rgba(58, 134, 255, 0.2);
+      --error: #ff4b5c;
+      --success: #4caf50;
+      --card-bg: rgba(10, 14, 30, 0.9);
+      --card-bg-light: #ffffff;
+      --border-soft: rgba(255, 255, 255, 0.06);
+    }
+    [data-theme="light"] {
+      --bg: var(--bg-light);
+      --fg: #0a1020;
+      --card-bg: var(--card-bg-light);
+      --border-soft: rgba(0, 0, 0, 0.07);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, "Inter", sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #162447 0, var(--bg) 45%);
+      color: var(--fg);
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .logo {
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--border-soft);
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      color: var(--fg);
+      cursor: pointer;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .game-shell {
+      width: 100%;
+      max-width: 900px;
+      background: var(--card-bg);
+      padding: 1.75rem;
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: 3fr 2fr;
+    }
+    .game-main {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .game-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    .binary-display {
+      padding: 1.1rem;
+      border-radius: 14px;
+      text-align: center;
+      border: 1px solid var(--border-soft);
+    }
+    .binary-text {
+      font-family: monospace;
+      font-size: 2.4rem;
+      letter-spacing: 0.22em;
+    }
+    .timers {
+      margin-top: 0.7rem;
+    }
+    .timer-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.25rem;
+    }
+    .bar-bg {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+    }
+    .bar-fill {
+      height: 100%;
+      width: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), #4cc9ff);
+      transition: width 0.2s linear;
+    }
+    .input-panel {
+      padding: 1rem;
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+    }
+    .numeric-input {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      font-size: 1rem;
+    }
+    .message {
+      min-height: 1rem;
+      font-size: 0.9rem;
+      margin-top: 0.45rem;
+    }
+    .message.success { color: var(--success); }
+    .message.error { color: var(--error); }
+
+    .primary-button {
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      border: none;
+      border-radius: 999px;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    .game-aside {
+      padding: 1rem;
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+      font-size: 0.9rem;
+    }
+
+    .final-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .final-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 14px;
+      text-align: center;
+      width: 300px;
+      border: 1px solid var(--border-soft);
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Tech Lab Arcade</div>
+  <button class="theme-toggle" id="themeToggle">🌙</button>
+</header>
+
+<main>
+  <div class="game-shell">
+    
+    <!-- MAIN PANEL -->
+    <section class="game-main">
+
+      <div>
+        <h1 class="game-title">Binary Blaster</h1>
+        <p class="subtitle">Convert the 8-bit binary number into decimal.</p>
+      </div>
+
+      <div class="binary-display">
+        <div class="binary-text" id="binaryText">--------</div>
+      </div>
+
+      <div class="timers">
+        <div class="timer-row">
+          <span>Total Time</span> <span id="totalTimeText">60s</span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" id="totalBar"></div></div>
+
+        <div class="timer-row" style="margin-top:10px;">
+          <span>Question Time</span> <span id="questionTimeText">10s</span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" id="questionBar"></div></div>
+      </div>
+
+      <div class="input-panel">
+        <input id="decimalInput" class="numeric-input" placeholder="Enter decimal, press Enter" />
+        <div class="message" id="msg"></div>
+        <button class="primary-button" id="startBtn">Start Game</button>
+      </div>
+
+    </section>
+
+    <!-- RIGHT SIDE -->
+    <aside class="game-aside">
+      <h3>How to Play</h3>
+      <p>• Convert the 8-bit binary number into decimal.</p>
+      <p>• Press Enter to submit.</p>
+      <p>• 10 seconds per question.</p>
+      <p>• 60 seconds total.</p>
+      <p>• 1 point for each correct answer.</p>
+    </aside>
+
+  </div>
+</main>
+
+<div class="final-overlay" id="finalOverlay">
+  <div class="final-card">
+    <h2>Time's Up!</h2>
+    <p>Your score:</p>
+    <h1 id="finalScore">0</h1>
+    <button class="primary-button" id="playAgainBtn">Play Again</button>
+  </div>
+</div>
+
+<script>
+  // Theme Toggle
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn.addEventListener("click", () => {
+    let t = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", t === "dark" ? "light" : "dark");
+  });
+
+  // Game Elements
+  const binaryText = document.getElementById("binaryText");
+  const decimalInput = document.getElementById("decimalInput");
+  const msg = document.getElementById("msg");
+
+  const totalBar = document.getElementById("totalBar");
+  const questionBar = document.getElementById("questionBar");
+
+  const totalTimeText = document.getElementById("totalTimeText");
+  const questionTimeText = document.getElementById("questionTimeText");
+
+  const startBtn = document.getElementById("startBtn");
+  const finalOverlay = document.getElementById("finalOverlay");
+  const finalScore = document.getElementById("finalScore");
+  const playAgainBtn = document.getElementById("playAgainBtn");
+
+  // Game Variables
+  let totalTime = 60;
+  let questionTime = 10;
+  let timer;
+  let currentValue;
+  let score = 0;
+  let running = false;
+
+  function randomBinary() {
+    let val = Math.floor(Math.random() * 256);
+    currentValue = val;
+    binaryText.textContent = val.toString(2).padStart(8, "0");
+    questionTime = 10;
+    questionTimeText.textContent = questionTime + "s";
+  }
+
+  function startGame() {
+    running = true;
+    score = 0;
+    totalTime = 60;
+    questionTime = 10;
+
+    finalOverlay.style.display = "none";
+    decimalInput.value = "";
+    msg.textContent = "";
+
+    randomBinary();
+
+    timer = setInterval(() => {
+      if (!running) return;
+
+      totalTime--;
+      questionTime--;
+
+      if (totalTime <= 0) totalTime = 0;
+      if (questionTime <= 0) questionTime = 0;
+
+      totalTimeText.textContent = totalTime + "s";
+      questionTimeText.textContent = questionTime + "s";
+
+      totalBar.style.width = (totalTime / 60) * 100 + "%";
+      questionBar.style.width = (questionTime / 10) * 100 + "%";
+
+      if (questionTime <= 0) {
+        msg.textContent = "Time up! Correct answer: " + currentValue;
+        randomBinary();
+      }
+      if (totalTime <= 0) endGame();
+    }, 1000);
+  }
+
+  function endGame() {
+    running = false;
+    clearInterval(timer);
+    finalScore.textContent = score;
+    finalOverlay.style.display = "flex";
+  }
+
+  function submit() {
+    if (!running) return;
+    let guess = Number(decimalInput.value);
+    if (isNaN(guess)) {
+      msg.textContent = "Enter a number!";
+      return;
+    }
+
+    if (guess === currentValue) {
+      msg.textContent = "Correct!";
+      msg.className = "message success";
+      score++;
+    } else {
+      msg.textContent = "Wrong — correct was " + currentValue;
+      msg.className = "message error";
+    }
+
+    decimalInput.value = "";
+    randomBinary();
+  }
+
+  decimalInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") submit();
+  });
+
+  startBtn.addEventListener("click", startGame);
+  playAgainBtn.addEventListener("click", startGame);
+
+</script>
+
+</body>
+</html>
+
+

@@ -282,10 +282,7 @@ const submitGuess = () => {
     }
 
     const guessUpper = currentGuess.toUpperCase();
-    if (!CS_WORDS.includes(guessUpper)) {
-        showMessage('Not in CS word list');
-        return;
-    }
+    
 
     const result = scoreGuess(guessUpper, secretWord);
     revealResult(result);
