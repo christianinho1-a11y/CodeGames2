@@ -203,6 +203,8 @@ if (gamesGrid) {
             .map(
                 (game) => `
                 <article class="game-tile">
+                    <h3><a class="game-link" href="${game.href ?? `game.html?game=${game.id}`}">${game.name}</a></h3>
+                    <p>${game.description}</p>
                     <h3>${game.name}</h3>
                     <p>${game.description}</p>
                     <a class="button ghost" href="${game.href ?? `game.html?game=${game.id}`}">Play</a>
