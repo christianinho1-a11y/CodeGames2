@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/themes.css" />
     <link rel="stylesheet" href="css/styles.css" />
     <script defer src="js/theme.js"></script>
+    <script defer src="js/player.js"></script>
     <script defer src="js/cs-wordle.js"></script>
 </head>
 <body>
@@ -72,5 +73,20 @@
     <footer class="site-footer">
         <p>© 2026 Tech Lab Arcade — Computer Science Games</p>
     </footer>
+
+    <div class="modal-overlay is-visible" data-player-modal>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="player-name-title">
+            <h2 id="player-name-title">Enter your name</h2>
+            <p>We use your name to add you to the leaderboard before you play.</p>
+            <form class="modal-form" data-player-form>
+                <label class="modal-field">
+                    Name
+                    <input type="text" name="playerName" autocomplete="name" maxlength="24" placeholder="e.g. Jordan Lee" required data-player-input />
+                </label>
+                <p class="modal-error" data-player-error aria-live="polite"></p>
+                <button class="button primary" type="submit">Start Playing</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
